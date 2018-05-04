@@ -1,0 +1,86 @@
+h1 {
+  font-family: 'Alegreya', serif;
+  font-weight: bold;
+}
+h2 {
+  font-family: 'Alegreya', serif;
+  font-family: 'PT Serif Caption', serif;
+}
+h3 {
+  font-family: 'Alegreya', serif;
+  font-family: 'Mukta Vaani', sans-serif;
+}
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+}
+.gallery .item {
+  height: 250px; /* we need to set a base height */
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery .item .item-photo {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  transition: all .3s ease-out;
+}
+
+.gallery .item-info {
+  color: white;
+
+  position: absolute;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  transition: all .3s ease-out;
+
+  width: 100%;
+  height: 100%;
+}
+
+.gallery img {
+  height: 100%;
+  width: 100%;
+
+  object-fit: cover;
+}
+
+.gallery .item .item-photo:before{
+  content: '';
+  background-color: rgba(0, 0, 0, .7);
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+
+  width: 0;
+  height: 0;
+  padding: 25%;
+  border-radius: 50%;
+
+  transition: transform .3s ease, opacity .3s ease-out;
+  will-change: opacity, transform;
+  transform: translate(-50%, -50%) scale(0);
+}
+
+.gallery .item:hover .item-photo:before {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(4);
+  transition-duration: .6s;
+}
+
+.gallery .item:hover .item-photo {
+  transform: scale(1.1) rotate(2deg);
+}
+
+.gallery .item:hover .item-info {
+  opacity: 1;
+  z-index: 3;
+}
